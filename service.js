@@ -27,9 +27,11 @@ const getService = argv => {
         service.logpath = logs;
     }
     if (config) {
+        const configPath = path.resolve(config);
+        console.log(`Using verdaccio config: ${configPath}`);
         service.env = {
             name: 'VERDACCIO_CONFIG',
-            value: config
+            value: configPath
         };
     }
     return new nw.Service(service);
@@ -71,6 +73,12 @@ const argsNone = yargs => yargs;
 
 const argsInstall = yargs =>
     yargs
+        .option('config', {
+            alias: 'c',
+            type: 'string',
+            description: 'The path to the verdaccio configuration file',
+            global: true
+        })
         .option('description', {
             alias: 'd',
             type: 'string',
@@ -196,12 +204,7 @@ const cmdRestart = argv => {
 // don't use global yargs singleton
 const yargs = require('yargs/yargs')(process.argv.slice(2));
 yargs
-    .option('config', {
-        alias: 'c',
-        type: 'string',
-        description: 'The configuration file for verdaccio',
-        global: true
-    })
+    .usage(`Manages Verdaccio Services\r\n\r\nUsage:\r\n$0 <command> [options]`)
     .option('name', {
         alias: 'n',
         type: 'string',
@@ -209,14 +212,8 @@ yargs
         default: 'Verdaccio',
         global: true
     })
-    .command('install', 'installs the windows service', argsInstall, cmdInstall)
-    .command(
-        'uninstall',
-        'uninstalls the windows service',
-        argsUninstall,
-        cmdUninstall
-    )
-    .command('start', 'starts the windows service', argsStart, cmdStart)
-    .command('stop', 'stops the windows service', argsStop, cmdStop)
-    .command('restart', 'restarts the windows service', argsRestart, cmdRestart)
-    .argv;
+    .command('install', 'installs the service', argsInstall, cmdInstall)
+    .command('uninstall', 'uninstalls the service', argsUninstall, cmdUninstall)
+    .command('start', 'starts the service', argsStart, cmdStart)
+    .command('stop', 'stops the service', argsStop, cmdStop)
+    .command('restart', 'restarts the service', argsRestart, cmdRestart).argv;
