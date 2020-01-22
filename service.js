@@ -160,6 +160,7 @@ const cmdStart = argv => {
     service.start();
     return promiseFirstEvent(service, {
         start: () => {
+            console.log(`Started Service: ${service.name}`);
             return service;
         },
         error: e => {
