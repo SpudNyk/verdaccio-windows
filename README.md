@@ -33,6 +33,11 @@ This is useful to see the verdaccio's output for any errors.
 When the service is created the install location will have a `daemon` sub directory. By default the service logs verdaccio standard output and error to this folder. This location can be changed using the service.js [install](#install)'s `--logs` option.  
 **NOTE** By default verdaccio logs all http requests, so the log files can get very large. To address this use the [verdaccio configuration file](https://verdaccio.org/docs/en/configuration) to setup [logging](https://verdaccio.org/docs/en/logger).
 
+#### Accounts
+
+As Verdaccio uses apache htpasswd files for its authetication by default. The [htpasswd](https://github.com/http-auth/htpasswd) script is included to ease setup. To use change directory to the install location then run `npm run htpasswd`  
+Use this to create a htpasswd file and manage the accounts in it. **NOTE** Ensure Verdaccio is configured to point to the htpasswd file you created.
+
 ## Usage
 
 Use the service.js command to manage a verdaccio service.

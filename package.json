@@ -1,13 +1,16 @@
 {
     "name": "verdaccio-windows",
     "description": "Verdaccio Windows Service",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "service.js",
     "license": "MIT",
     "repository": "https://github.com/SpudNyk/verdaccio-windows.git",
     "bin": {
         "verdaccio-windows": "service.js",
         "verdaccio-runner": "runner.js"
+    },
+    "scripts": {
+        "htpasswd": "htpasswd"
     },
     "dependencies": {
         "htpasswd": "^2.4.0",
