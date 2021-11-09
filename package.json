@@ -1,24 +1,14 @@
 {
+    "private": true,
     "name": "verdaccio-windows",
-    "description": "Verdaccio Windows Service",
-    "version": "1.1.1",
-    "main": "service.js",
+    "description": "Verdaccio Windows Service Boilerplate",
+    "version": "2.0.0",
     "license": "MIT",
     "repository": "https://github.com/SpudNyk/verdaccio-windows.git",
-    "bin": {
-        "verdaccio-windows": "service.js",
-        "verdaccio-runner": "runner.js"
-    },
     "scripts": {
         "htpasswd": "htpasswd"
     },
     "dependencies": {
-        "htpasswd": "^2.4.4",
-        "node-windows": "^1.0.0-beta.5",
-        "verdaccio": "^4.8.1",
-        "yargs": "^15.4.1"
-    },
-    "devDependencies": {
-        "eslint": "^7.6.0"
+        "verdaccio": "^5.2.2"
     }
 }

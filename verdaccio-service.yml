@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/winsw/winsw/master/doc/yamlConfigurationSchema.json
+## Written against WINSW 2.11.0
+id: verdaccio-service
+name: Verdaccio
+description: A lightweight private npm proxy registry
+executable: node
+# run verdaccio
+arguments: >
+  "%BASE%/node_modules/verdaccio/bin/verdaccio"
+  --config "%BASE%/verdaccio-config.yaml"
+# Auto Restart on crashes
+onFailure:
+    -
+        action: restart
+    -
+        action: restart
+        delay: 30 sec
+    -
+        action: restart
+        delay: 60 sec
+    -
+        action: restart
+        delay: 5 min
+# Server has been running for 10 minutes 
+resetFailure: 10 min
+
+# verdaccio stdout/stderr will be saved to log files in the same folder by default
+
+# Uncomment to configure different log directory
+log:
+  logPath: '%BASE%\log'
+  mode: roll-by-size
+  pattern: yyyy-MM-dd
+  sizeThreshold: 10240
+  keepFiles: 8
