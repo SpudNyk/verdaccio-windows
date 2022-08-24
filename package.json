@@ -6,6 +6,6 @@
     "license": "MIT",
     "repository": "https://github.com/SpudNyk/verdaccio-windows.git",
     "dependencies": {
-        "verdaccio": "^5.2.2"
+        "verdaccio": "^5.14.0"
     }
 }
